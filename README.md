@@ -4,11 +4,13 @@
 
 1.2 安装git
 
-注册github账号
+2.注册github账号
+```
 qutgitstudent
 zhouwei@qut.edu.cn
 qtech1234!!
-创建github仓库(repository)
+```
+3.创建github仓库(repository)
 仓库名字以姓名项目名方式命名，使用驼峰拼写
 
 创建公钥私钥
