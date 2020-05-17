@@ -13,7 +13,7 @@
         <el-form-item label="手机号" label-width="120px" prop="phone">
           <el-input v-model="selectedUser.phone" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="地址" label-width="120px" prop="email">
+        <el-form-item label="地址" label-width="120px" prop="adress">
           <el-input v-model="selectedUser.adress" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" label-width="120px" prop="password">
@@ -37,10 +37,12 @@
       <el-breadcrumb-item>用户信息</el-breadcrumb-item>
     </el-breadcrumb>
   </el-row>
+  <bulk-registration @onSubmit="listUsers()"></bulk-registration>
   <el-card style="margin: 18px 2%;width: 95%">
     <el-table
       :data="users"
       stripe
+      :default-sort = "{prop: 'id', order: 'ascending'}"
       style="width: 100%"
       :max-height="tableHeight">
       <el-table-column
@@ -81,7 +83,7 @@
             v-model="scope.row.enabled"
             active-color="#13ce66"
             inactive-color="#ff4949"
-            @change="(value) => commitChange(value, scope.row)">
+            @change="(value) => commitStatusChange(value, scope.row)">
           </el-switch>
         </template>
       </el-table-column>
@@ -104,17 +106,15 @@
         </template>
       </el-table-column>
     </el-table>
-    <div style="margin: 20px 0 20px 0;float: left">
-      <el-button>取消选择</el-button>
-      <el-button>批量删除</el-button>
-    </div>
   </el-card>
   </div>
 </template>
 
 <script>
+import BulkRegistration from './BulkRegistration'
 export default {
   name: 'UserProfile',
+  components: {BulkRegistration},
   data () {
     return {
       users: [],
@@ -138,7 +138,7 @@ export default {
       var _this = this
       this.$axios.get('/admin/user').then(resp => {
         if (resp && resp.status === 200) {
-          _this.users = resp.data
+          _this.users = resp.data.result
         }
       })
     },
@@ -146,13 +146,13 @@ export default {
       var _this = this
       this.$axios.get('/admin/role').then(resp => {
         if (resp && resp.status === 200) {
-          _this.roles = resp.data
+          _this.roles = resp.data.result
         }
       })
     },
-    commitChange (value, user) {
+    commitStatusChange (value, user) {
       if (user.username !== 'admin') {
-        this.$axios.put('/admin/user', {
+        this.$axios.put('/admin/user/status', {
           enabled: value,
           username: user.username
         }).then(resp => {
@@ -184,7 +184,7 @@ export default {
         username: user.username,
         name: user.name,
         phone: user.phone,
-        email: user.email,
+        adress: user.adress,
         roles: roles
       }).then(resp => {
         if (resp && resp.status === 200) {
@@ -203,6 +203,27 @@ export default {
         roleIds.push(user.roles[i].id)
       }
       this.selectedRolesIds = roleIds
+    },
+    deleteUser (id) {
+      this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$axios
+          .post('/admin/user/delete', {id: id}).then(resp => {
+            if (resp && resp.status === 200) {
+              this.listUsers()
+            }
+          })
+      }
+      ).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+      // alert(id)
     },
     resetPassword (username) {
       this.$axios.put('/admin/user/password', {

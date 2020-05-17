@@ -24,8 +24,8 @@
     </el-col>
     <el-col :span="2">
       <div><edit-form ref="edit"></edit-form></div>
-      <div><i class="el-button" style="width: 103px;margin-left: 4px" @click="editGood(good)">修改商品</i></div>
-      <div><i class="el-button" style="width: 103px;margin-left: 4px" @click="deleteGood(good.id)">删除商品</i></div>
+      <div><i class="el-button" style="width: 103px;margin-left: 4px" v-if="user.username === good.seller ? true : false " @click="editGood(good)">修改商品</i></div>
+      <div><i class="el-button" style="width: 103px;margin-left: 4px" v-if="user.username === good.seller ? true : false " @click="deleteGood(good.id)">删除商品</i></div>
     </el-col>
   </el-row>
 </template>
@@ -37,11 +37,17 @@ export default {
   components: {EditForm},
   data () {
     return {
-      good: []
+      good: [],
+      user: {
+        id: '',
+        username: '',
+        name: ''
+      }
     }
   },
   mounted: function () {
     this.loadGood()
+    this.getCurrentUser()
   },
   methods: {
     loadGood () {
@@ -52,14 +58,18 @@ export default {
         }
       })
     },
+    getCurrentUser () {
+      var _this = this
+      this.$axios.get('/getCurrentUser').then(resp => {
+        _this.user.username = resp.data.result.username
+      })
+    },
     editGood (good) {
       this.$refs.edit.dialogFormVisible = true
       this.$refs.edit.form = {
         id: good.id,
         img: good.img,
         name: good.name,
-        seller: good.seller,
-        date: good.date,
         price: good.price,
         introduction: good.introduction,
         category: {

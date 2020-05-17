@@ -148,7 +148,7 @@ export default {
     },
     loadGoods () {
       var _this = this
-      this.$axios.get('/goods').then(resp => {
+      this.$axios.get('/admin/content/goods').then(resp => {
         if (resp && resp.status === 200) {
           _this.goods = resp.data
         }

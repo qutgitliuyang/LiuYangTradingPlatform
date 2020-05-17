@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import mavonEditor from 'mavon-editor'
 // 设置反向代理，前端请求默认发送到 http://localhost:8443/api
 var axios = require('axios')
 axios.defaults.baseURL = 'http://localhost:8443/api'
@@ -15,6 +16,7 @@ axios.defaults.withCredentials = true
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.use(mavonEditor)
 
 router.beforeEach((to, from, next) => {
   if (store.state.user.username && to.path.startsWith('/admin')) {
@@ -41,9 +43,6 @@ router.beforeEach((to, from, next) => {
 
 const initAdminMenu = (router, store) => {
   // 防止重复触发加载菜单操作
-  if (store.state.adminMenus.length > 0) {
-    return
-  }
   axios.get('/menu').then(resp => {
     if (resp && resp.status === 200) {
       var fmtRoutes = formatRoutes(resp.data.result)

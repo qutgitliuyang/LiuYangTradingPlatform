@@ -22,9 +22,9 @@ export default {
     return {
       navList: [
         {name: '/index', navItem: '首页'},
-        {name: '/jotter', navItem: '笔记本'},
+        {name: '/articles', navItem: '好物推荐'},
         {name: '/goods', navItem: '商品'},
-        {name: '/admin', navItem: '个人中心'}
+        {name: '/admin', navItem: '后台管理'}
       ]
     }
   },

@@ -7,6 +7,9 @@ import Login from '../components/Login'
 import Register from '../components/Register'
 import GoodsIndex from '../components/goods/GoodsIndex'
 import GoodDetails from '../components/goods/GoodDetails'
+import Articles from '../components/articles/Articles'
+import ArticleDetails from '../components/articles/ArticleDetails'
+import Editor from '../components/admin/content/ArticleEditor'
 import Cart from '../components/goods/Cart'
 
 Vue.use(Router)
@@ -41,6 +44,24 @@ export default new Router({
           path: '/goods/goodsDetail',
           name: 'GoodDetails',
           component: GoodDetails,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/articles',
+          name: 'Articles',
+          component: Articles
+        },
+        {
+          path: '/articles/articleDetail',
+          name: 'ArticleDetail',
+          component: ArticleDetails
+        },
+        {
+          path: '/admin/content/editor',
+          name: 'Editor',
+          component: Editor,
           meta: {
             requireAuth: true
           }

@@ -114,6 +114,6 @@ export default {
 
 <style scoped>
   .add-button {
-    margin: 18px 0 0 10px;
+    margin: 18px 0 0 25px;
   }
 </style>

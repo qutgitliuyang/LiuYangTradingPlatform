@@ -21,11 +21,10 @@
             <router-link  :to="{path:'goods/goodsDetail',query:{id: item.id}}"><img :src="item.img" alt="封面"></router-link>
           </div>
           <div class="info">
-            <div class="title" @click="editGood(item)">
+            <div class="title">
               <a>{{item.name}}</a>
             </div>
           </div>
-          <i class="el-icon-delete" @click="deleteGood(item.id)"></i>
           <div class="author">{{item.seller}}</div>
         </el-card>
       </el-tooltip>
@@ -96,27 +95,6 @@ export default {
           name: item.category.name
         }
       }
-    },
-    deleteGood (id) {
-      this.$confirm('此操作将永久删除该商品, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.$axios
-          .post('/delete', {id: id}).then(resp => {
-            if (resp && resp.status === 200) {
-              this.loadGoods()
-            }
-          })
-      }
-      ).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        })
-      })
-      // alert(id)
     }
   }
 }

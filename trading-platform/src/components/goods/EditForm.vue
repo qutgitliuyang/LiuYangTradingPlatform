@@ -9,14 +9,8 @@
         <el-form-item label="商品名" :label-width="formLabelWidth" prop="name">
           <el-input v-model="form.name" autocomplete="off" ></el-input>
         </el-form-item>
-        <el-form-item label="卖家" :label-width="formLabelWidth" prop="seller">
-          <el-input v-model="form.seller" autocomplete="off"></el-input>
-        </el-form-item>
         <el-form-item label="价格" :label-width="formLabelWidth" prop="price">
           <el-input v-model="form.price" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="出售日期" :label-width="formLabelWidth" prop="date">
-          <el-input v-model="form.date" autocomplete="off" placeholder="图片 URL"></el-input>
         </el-form-item>
         <el-form-item label="照片" :label-width="formLabelWidth" prop="img">
           <el-input v-model="form.img" autocomplete="off" placeholder="图片 URL"></el-input>
@@ -68,8 +62,16 @@ export default {
           name: ''
         }
       },
+      user: {
+        id: '',
+        username: '',
+        name: ''
+      },
       formLabelWidth: '120px'
     }
+  },
+  mounted: function () {
+    this.getCurrentUser()
   },
   methods: {
     clear () {
@@ -87,14 +89,20 @@ export default {
         }
       }
     },
+    getCurrentUser () {
+      var _this = this
+      this.$axios.get('/getCurrentUser').then(resp => {
+        _this.user.username = resp.data.result.username
+      })
+    },
     onSubmit () {
       this.$axios
         .post('/goods', {
           id: this.form.id,
           img: this.form.img,
           name: this.form.name,
-          seller: this.form.seller,
-          date: this.form.date,
+          seller: this.user.username,
+          date: new Date(),
           introduction: this.form.introduction,
           price: this.form.price,
           category: this.form.category
