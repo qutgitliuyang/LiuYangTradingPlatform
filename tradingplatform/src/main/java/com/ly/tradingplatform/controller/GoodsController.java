@@ -27,12 +27,19 @@ public class GoodsController {
     @GetMapping("/api/admin/content/goods")
     @CrossOrigin
     public List<Good> adminList() throws Exception {
-        return goodService.list();
+        return goodService.adminlist();
     }
 
     @PostMapping("/api/goods")
     @CrossOrigin
     public Good addOrUpdate(@RequestBody Good good) throws Exception {
+        goodService.addOrUpdate(good);
+        return good;
+    }
+
+    @PostMapping("/api/goods/pay")
+    @CrossOrigin
+    public Good goodPay(@RequestBody Good good) throws Exception {
         goodService.addOrUpdate(good);
         return good;
     }

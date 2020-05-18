@@ -24,6 +24,9 @@ public class Good {
     String introduction;
     double price;
 
+    @Column(name = "status")
+    private int status;
+
     public int getId() {
         return id;
     }
@@ -86,5 +89,13 @@ public class Good {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

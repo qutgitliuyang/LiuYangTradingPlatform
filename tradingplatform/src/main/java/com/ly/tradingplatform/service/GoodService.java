@@ -16,8 +16,14 @@ public class GoodService {
     CategoryService categoryService;
 
     public List<Good> list() {
+        //Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        int status = 1;
+        return goodDAO.findByStatus(status);
+    }
+
+    public List<Good> adminlist() {
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
-        return goodDAO.findAll(sort);
+        return goodDAO.findAll();
     }
 
     public void addOrUpdate(Good good) {

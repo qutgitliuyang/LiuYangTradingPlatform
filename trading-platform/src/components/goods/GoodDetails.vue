@@ -4,8 +4,10 @@
       <div class="img" style="margin-left: 50px">
         <img :src="good.img" alt="照片" style="width: 320px;height: 320px">
         <div class="product-buy-cart">
-          <div class="product-add-cart" style="float: left;margin-left: 65px"><el-button style="color: #E5511D;border-color: #F0CAB6;background: #FFE4D0" @click="handleAddToCart"><i class="el-icon-s-finance">立即购买</i></el-button></div>
-          <div class="product-buy"><el-button style="color: #FFF;border-color: #F40;;background: #F40" @click="handleAddToCart"><i class="el-icon-shopping-cart-2">加入购物车</i></el-button></div>
+          <div class="product-add-cart" style="float: left;margin-left: 65px">
+             <el-button style="color: #E5511D;border-color: #F0CAB6;background: #FFE4D0" @click="buyGood(good)"><i class="el-icon-s-finance">立即购买</i></el-button>
+          </div>
+          <div class="product-buy"><el-button style="color: #FFF;border-color: #F40;;background: #F40"><i class="el-icon-shopping-cart-2">加入购物车</i></el-button></div>
         </div>
       </div>
     </el-col>
@@ -99,8 +101,8 @@ export default {
       })
       // alert(id)
     },
-    handleAddToCart () {
-      this.$store.commit('addCart', this.id)
+    buyGood () {
+      this.$router.push({path: '/goods/goodsPay?id=' + this.good.id})
     }
   }
 }

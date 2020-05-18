@@ -35,6 +35,12 @@
             <el-option label="科技" value="6"></el-option>
           </el-select>
         </el-form-item>
+        <el-form-item label="状态" :label-width="formLabelWidth" prop="status">
+          <el-select v-model="form.status" placeholder="请选择分类">
+            <el-option label="出售中" value="1"></el-option>
+            <el-option label="已购买" value="2"></el-option>
+          </el-select>
+        </el-form-item>
         <el-form-item prop="id" style="height: 0px">
           <el-input type="hidden" v-model="form.id" autocomplete="off"></el-input>
         </el-form-item>
@@ -63,6 +69,7 @@ export default {
         introduction: '',
         price: '',
         img: '',
+        status: '',
         category: {
           id: '',
           name: ''
@@ -81,6 +88,7 @@ export default {
         introduction: '',
         price: '',
         img: '',
+        status: '',
         category: {
           id: '',
           name: ''
@@ -97,6 +105,7 @@ export default {
           date: this.form.date,
           introduction: this.form.introduction,
           price: this.form.price,
+          status: this.form.status,
           category: this.form.category
         }).then(resp => {
           if (resp && resp.status === 200) {

@@ -7,6 +7,7 @@ import Login from '../components/Login'
 import Register from '../components/Register'
 import GoodsIndex from '../components/goods/GoodsIndex'
 import GoodDetails from '../components/goods/GoodDetails'
+import GoodPay from '../components/goods/GoodPay'
 import Articles from '../components/articles/Articles'
 import ArticleDetails from '../components/articles/ArticleDetails'
 import Editor from '../components/admin/content/ArticleEditor'
@@ -44,6 +45,14 @@ export default new Router({
           path: '/goods/goodsDetail',
           name: 'GoodDetails',
           component: GoodDetails,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/goods/goodsPay',
+          name: 'GoodPay',
+          component: GoodPay,
           meta: {
             requireAuth: true
           }

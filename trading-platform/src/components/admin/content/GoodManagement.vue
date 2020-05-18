@@ -49,6 +49,11 @@
           fit>
         </el-table-column>
         <el-table-column
+          prop="status"
+          label="商品状态"
+          fit>
+        </el-table-column>
+        <el-table-column
           prop="date"
           label="出版日期"
           width="120">
@@ -137,14 +142,12 @@ export default {
         date: item.date,
         price: item.price,
         introduction: item.introduction,
+        status: item.status.toString(),
         category: {
           id: item.category.id.toString(),
           name: item.category.name
         }
       }
-      // this.$refs.edit.category = {
-      //   id: item.category.id.toString()
-      // }
     },
     loadGoods () {
       var _this = this

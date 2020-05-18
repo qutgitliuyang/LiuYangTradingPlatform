@@ -105,7 +105,8 @@ export default {
           date: new Date(),
           introduction: this.form.introduction,
           price: this.form.price,
-          category: this.form.category
+          category: this.form.category,
+          status: 1
         }).then(resp => {
           if (resp && resp.status === 200) {
             this.dialogFormVisible = false
