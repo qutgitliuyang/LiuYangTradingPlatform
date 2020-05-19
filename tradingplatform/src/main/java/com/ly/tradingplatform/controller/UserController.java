@@ -27,6 +27,12 @@ public class UserController {
         return ResultFactory.buildSuccessResult(userService.list());
     }
 
+    @GetMapping("/api/user/{id}")
+    @CrossOrigin
+    public Result list(@PathVariable("id") int id) throws Exception {
+        return ResultFactory.buildSuccessResult(userService.findById(id));
+    }
+
     @PutMapping("/api/admin/user/status")
     public Result updateUserStatus(@RequestBody @Valid User requestUser) {
         userService.updateUserStatus(requestUser);
@@ -42,8 +48,13 @@ public class UserController {
     @PutMapping("/api/admin/user")
     public Result editUser(@RequestBody User requestUser) {
         userService.editUser(requestUser);
-        String message = "修改用户信息成功";
-        return ResultFactory.buildSuccessResult(message);
+        return ResultFactory.buildSuccessResult("修改用户信息成功");
+    }
+
+    @PutMapping("/api/user/edit")
+    public Result editPersonalUser(@RequestBody User requestUser) {
+        userService.editPersonalUser(requestUser);
+        return ResultFactory.buildSuccessResult("修改用户信息成功");
     }
 
     @PostMapping("/api/admin/user/delete")

@@ -2,6 +2,9 @@
   <body id="paper">
   <el-form class="login-container" label-position="left"
            label-width="0px" v-loading="loading">
+    <div style="float: right">
+      <router-link to='login'><el-button>返回登录页</el-button></router-link>
+    </div>
     <h3 class="login_title">用户注册</h3>
     <el-form-item>
       <el-input type="text" v-model="loginForm.username"
@@ -10,6 +13,18 @@
     <el-form-item>
       <el-input type="password" v-model="loginForm.password"
                 auto-complete="off" placeholder="密码"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-input type="text" v-model="loginForm.name"
+                auto-complete="off" placeholder="真实姓名"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-input type="text" v-model="loginForm.phone"
+                auto-complete="off" placeholder="电话号码"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-input type="text" v-model="loginForm.adress"
+                auto-complete="off" placeholder="地址"></el-input>
     </el-form-item>
     <el-form-item style="width: 100%">
       <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="register">注册</el-button>
@@ -26,7 +41,10 @@ export default {
       checked: true,
       loginForm: {
         username: '',
-        password: ''
+        password: '',
+        name: '',
+        phone: '',
+        adress: ''
       },
       loading: false
     }
@@ -37,7 +55,10 @@ export default {
       this.$axios
         .post('/register', {
           username: this.loginForm.username,
-          password: this.loginForm.password
+          password: this.loginForm.password,
+          name: this.loginForm.password,
+          phone: this.loginForm.password,
+          adress: this.loginForm.password
         })
         .then(resp => {
           if (resp.data.code === 200) {
@@ -66,9 +87,6 @@ export default {
     background-size: cover;
     position: fixed;
   }
-  body{
-    margin: -9px -8px;
-  }
   .login-container {
     border-radius: 15px;
     background-clip: padding-box;
@@ -80,7 +98,7 @@ export default {
     box-shadow: 0 0 25px #cac6c6;
   }
   .login_title {
-    margin: 0px auto 40px auto;
+    margin: 8px 0px 40px 80px;
     text-align: center;
     color: #505458;
   }

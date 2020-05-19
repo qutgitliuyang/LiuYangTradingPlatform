@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface GoodDAO extends JpaRepository<Good,Integer> {
-    List<Good> findAllByCategory(Category category);
+    List<Good> findAllByCategoryAndStatus(Category category, int status);
     List<Good> findAllByNameLikeOrSellerLike(String keyword1, String keyword2);
     Good findById(int id);
     List<Good> findByStatus(int status);

@@ -28,11 +28,11 @@
         <el-form-item label="分类" :label-width="formLabelWidth" prop="cid">
           <el-select v-model="form.category.id" placeholder="请选择分类">
             <el-option label="文学书籍" value="1"></el-option>
-            <el-option label="流行" value="2"></el-option>
-            <el-option label="文化" value="3"></el-option>
-            <el-option label="生活" value="4"></el-option>
-            <el-option label="经管" value="5"></el-option>
-            <el-option label="科技" value="6"></el-option>
+            <el-option label="闲置服饰" value="2"></el-option>
+            <el-option label="宿舍用品" value="3"></el-option>
+            <el-option label="零食小吃" value="4"></el-option>
+            <el-option label="代步工具" value="5"></el-option>
+            <el-option label="其他好物" value="6"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="状态" :label-width="formLabelWidth" prop="status">

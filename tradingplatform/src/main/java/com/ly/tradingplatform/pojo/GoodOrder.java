@@ -1,26 +1,16 @@
 package com.ly.tradingplatform.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
 import java.sql.Date;
 
-@Entity
-@Table(name = "good_order")
-@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
+
 public class GoodOrder {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+
     int id;
     String goodName;
     double goodPrice;
     String goodSeller;
     String goodImg;
-
-    @Column(name = "buyerId")
     private int buyerId;
-
     String buyerUsername;
     Date date;
 

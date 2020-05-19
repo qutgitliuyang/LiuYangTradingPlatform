@@ -1,12 +1,12 @@
 <template>
   <div>
-      <div class="info" style="width: 800px;height: 500px">
+      <div class="info" style="width: 800px;height: 500px;margin-left: auto;margin-right: auto;">
         <div class="title">
           <h1>请确认您的购买</h1>
-          <div>
+          <div style="margin-bottom: 30px">
             <span class="product-name">商品名：{{good.name}}</span>
-            <span class="product-seller">卖家：{{good.seller}}</span>
-            <span class="product-cost">售价：￥{{good.price}}</span>
+            <span class="product-seller" style="margin-left: 20px">卖家：{{good.seller}}</span>
+            <span class="product-cost" style="margin-left: 20px">售价：￥{{good.price}}</span>
           </div>
           <div>
             <el-button style="color: #E5511D;border-color: #F0CAB6;background: #FFE4D0" @click="payGood(good)"><i class="el-icon-s-finance">确认购买</i></el-button>

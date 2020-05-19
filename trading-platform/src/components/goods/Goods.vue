@@ -132,18 +132,6 @@ export default {
     display: block;
     line-height: 17px;
   }
-  .el-icon-delete {
-    cursor: pointer;
-    float: right;
-  }
-
-  .switch {
-    display: flex;
-    position: absolute;
-    left: 780px;
-    top: 25px;
-  }
-
   a {
     text-decoration: none;
   }

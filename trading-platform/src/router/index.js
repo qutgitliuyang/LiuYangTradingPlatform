@@ -10,6 +10,8 @@ import GoodDetails from '../components/goods/GoodDetails'
 import GoodPay from '../components/goods/GoodPay'
 import Articles from '../components/articles/Articles'
 import ArticleDetails from '../components/articles/ArticleDetails'
+import PersonalOrder from '../components/personal/PersonalOrder'
+import PersonalInformation from '../components/personal/PersonalInformation'
 import Editor from '../components/admin/content/ArticleEditor'
 import Cart from '../components/goods/Cart'
 
@@ -66,6 +68,22 @@ export default new Router({
           path: '/articles/articleDetail',
           name: 'ArticleDetail',
           component: ArticleDetails
+        },
+        {
+          path: '/personal/order',
+          name: 'PersonalOrder',
+          component: PersonalOrder,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/personal/information',
+          name: 'PersonalInformation',
+          component: PersonalInformation,
+          meta: {
+            requireAuth: true
+          }
         },
         {
           path: '/admin/content/editor',

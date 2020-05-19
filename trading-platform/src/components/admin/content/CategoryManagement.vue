@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-dialog
-      title="修改角色信息"
+      title="修改分类信息"
       :visible.sync="dialogFormVisible">
       <el-form v-model="selectedCategory" style="text-align: left" ref="dataForm">
         <el-form-item label="分类名称" label-width="120px" prop="name">

@@ -1,8 +1,11 @@
 <template>
   <body id="poster">
-    <el-form class="login-container" label-position="left"
+  <el-form class="login-container" label-position="left"
              label-width="0px">
-      <h3 class="login_title">系统登录</h3>
+    <div style="float: right">
+      <router-link to='register'><el-button>账户注册</el-button></router-link>
+    </div>
+    <h3 class="login_title">系统登录</h3>
       <el-form-item>
         <el-input type="text" v-model="loginForm.username"
                   auto-complete="off" placeholder="账号"></el-input>
@@ -77,7 +80,7 @@ export default {
     box-shadow: 0 0 25px #cac6c6;
   }
   .login_title {
-    margin: 0px auto 40px auto;
+    margin: 8px 0px 40px 80px;
     text-align: center;
     color: #505458;
   }

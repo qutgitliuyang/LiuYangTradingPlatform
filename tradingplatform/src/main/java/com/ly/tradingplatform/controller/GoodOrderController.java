@@ -13,7 +13,7 @@ public class GoodOrderController {
     @Autowired
     GoodOrderService goodOrderService;
 
-    @GetMapping("/api/orders")
+    @GetMapping("/api/orders/{buyId}")
     @CrossOrigin
     public List<GoodOrder> list(@PathVariable("buyId") int buyId) throws Exception {
         return goodOrderService.list(buyId);

@@ -36,7 +36,8 @@ public class GoodService {
 
     public List<Good> listByCategory(int cid) {
         Category category = categoryService.get(cid);
-        return goodDAO.findAllByCategory(category);
+        int status = 1;
+        return goodDAO.findAllByCategoryAndStatus(category,status);
     }
 
     public List<Good> Search(String keywords) {

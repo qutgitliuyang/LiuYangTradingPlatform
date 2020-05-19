@@ -58,12 +58,6 @@
           label="出版日期"
           width="120">
         </el-table-column>
-        <!--<el-table-column-->
-        <!--prop="abs"-->
-        <!--label="摘要"-->
-        <!--show-overflow-tooltip-->
-        <!--fit>-->
-        <!--</el-table-column>-->
         <el-table-column
           fixed="right"
           label="操作"

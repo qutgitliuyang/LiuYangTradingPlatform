@@ -60,6 +60,14 @@ public class UserService {
         adminUserRoleService.saveRoleChanges(userInDB.getId(), user.getRoles());
     }
 
+    public void editPersonalUser(User user) {
+        User userPersonal = userDAO.findByUsername(user.getUsername());
+        userPersonal.setName(user.getName());
+        userPersonal.setPhone(user.getPhone());
+        userPersonal.setAdress(user.getAdress());
+        userDAO.save(userPersonal);
+    }
+
     public void updateUserStatus(User user) {
         User userInDB = userDAO.findByUsername(user.getUsername());
         userInDB.setEnabled(user.isEnabled());
@@ -74,6 +82,10 @@ public class UserService {
         String encodedPassword = new SimpleHash("md5", "123", salt, times).toString();
         userInDB.setPassword(encodedPassword);
         return userDAO.save(userInDB);
+    }
+
+    public List<User> findById(int id) {
+        return userDAO.findById(id);
     }
 
     public void deleteById(int id) {
